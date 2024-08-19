@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.d3c4a141.css","mappings":"AAAA,EACE,QAAS,CACT,SACF,CAEA,MAGE,wBAAyB,CAFzB,8BAA+B,CAC/B,YAEF","sources":["index.css"],"sourcesContent":["* {\n  margin: 0;\n  padding: 0;\n}\n\n.page {\n  min-height: calc(100vh - 128px);\n  padding: 48px;\n  background-color: #f1f3f7;\n}\n"],"names":[],"sourceRoot":""}

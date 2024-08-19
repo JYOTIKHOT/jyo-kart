@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/jyo-stocks/static/css/main.68e7dceb.css",
-    "main.js": "/jyo-stocks/static/js/main.87a546c8.js",
+    "main.css": "/jyo-stocks/static/css/main.d3c4a141.css",
+    "main.js": "/jyo-stocks/static/js/main.d267bb8e.js",
     "index.html": "/jyo-stocks/index.html",
-    "main.68e7dceb.css.map": "/jyo-stocks/static/css/main.68e7dceb.css.map",
-    "main.87a546c8.js.map": "/jyo-stocks/static/js/main.87a546c8.js.map"
+    "main.d3c4a141.css.map": "/jyo-stocks/static/css/main.d3c4a141.css.map",
+    "main.d267bb8e.js.map": "/jyo-stocks/static/js/main.d267bb8e.js.map"
   },
   "entrypoints": [
-    "static/css/main.68e7dceb.css",
-    "static/js/main.87a546c8.js"
+    "static/css/main.d3c4a141.css",
+    "static/js/main.d267bb8e.js"
   ]
 }
