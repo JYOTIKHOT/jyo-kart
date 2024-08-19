@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/jyo-kart/static/css/main.822b29a6.css",
-    "main.js": "/jyo-kart/static/js/main.506b9568.js",
-    "index.html": "/jyo-kart/index.html",
-    "main.822b29a6.css.map": "/jyo-kart/static/css/main.822b29a6.css.map",
-    "main.506b9568.js.map": "/jyo-kart/static/js/main.506b9568.js.map"
+    "main.css": "/jyo-stocks/static/css/main.822b29a6.css",
+    "main.js": "/jyo-stocks/static/js/main.9866b2a0.js",
+    "index.html": "/jyo-stocks/index.html",
+    "main.822b29a6.css.map": "/jyo-stocks/static/css/main.822b29a6.css.map",
+    "main.9866b2a0.js.map": "/jyo-stocks/static/js/main.9866b2a0.js.map"
   },
   "entrypoints": [
     "static/css/main.822b29a6.css",
-    "static/js/main.506b9568.js"
+    "static/js/main.9866b2a0.js"
   ]
 }
