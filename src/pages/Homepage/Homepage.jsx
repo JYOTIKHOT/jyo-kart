@@ -1,33 +1,38 @@
-import { Box, Stack, Typography } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import StockCard from "../../components/StockCard";
-import MostChangedStocks from "../../components/MostChangedStocks";
+import { Box, Stack } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchTopStocks, getTopStockData } from "../../store/topStocksReducer";
+import MostChangedStocks from "../../components/MiniStocksList";
+import { STOCK_TYPES } from "../../components/MiniStocksList/MiniStocksList";
 
 const Homepage = () => {
-  const [topGainers, setTopGainers] = useState([]);
-  const [topLosers, setTopLosers] = useState([]);
+  const {
+    topTraded = [],
+    topLosers = [],
+    topGainers = [],
+  } = useSelector(getTopStockData);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const url = new URL(process.env.REACT_APP_API_BASE_URL);
-    url.pathname += "query";
-    url.searchParams.append("function", "TOP_GAINERS_LOSERS");
-    axios.get(url.toString()).then((res) => {
-      setTopGainers((res.data.top_gainers || []).slice(0, 5));
-      setTopLosers((res.data.top_losers || []).slice(0, 5));
-    });
-  }, []);
+    dispatch(fetchTopStocks());
+  }, [dispatch]);
   return (
     <Box className="page">
-      <Stack direction="column" spacing={4}>
+      <Stack direction="column" spacing={4} width="100%" alignItems="center">
         <MostChangedStocks
-          stockList={topGainers}
-          priceNotDecreased={true}
-          title="Top gainers"
+          stockList={topTraded.slice(0, 5)}
+          title="Most Traded"
+          type={STOCK_TYPES.TOP_TRADED}
         />
         <MostChangedStocks
-          stockList={topLosers}
-          priceNotDecreased={false}
-          title="Top losers"
+          stockList={topGainers.slice(0, 5)}
+          title="Top Gainers"
+          type={STOCK_TYPES.TOP_GAINERS}
+        />
+        <MostChangedStocks
+          stockList={topLosers.slice(0, 5)}
+          title="Top Losers"
+          type={STOCK_TYPES.TOP_LOSERS}
         />
       </Stack>
     </Box>

@@ -11,8 +11,8 @@ const Footer = () => {
       color="#0c0c29d6"
       sx={{ background: "#e6e9ed" }}
     >
-      <Typography>
-        &copy;Copyright 2024 Jyo Street, All rights reserved
+      <Typography variant="body2">
+        &copy; Copyright 2024 Jyo Street, All rights reserved
       </Typography>
     </Box>
   );

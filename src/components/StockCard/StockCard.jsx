@@ -1,16 +1,25 @@
 import { Card, Stack, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
-function StockCard({
-  ticker,
-  price,
-  changeAmount,
-  changePercentage,
-  priceNotDecreased,
-}) {
-  const changeAmountColor = priceNotDecreased ? "green" : "red";
+function StockCard({ ticker, price, changeAmount, changePercentage }) {
+  const changeAmountColor = changeAmount.includes("-") ? "red" : "green";
   return (
-    <Card sx={{ width: "180px", height: "120px" }} variant="outlined">
+    <Card
+      component={Link}
+      to={`/stocks/${ticker}`}
+      underline="none"
+      sx={{
+        width: "180px",
+        height: "120px",
+        textDecoration: "none",
+        boxShadow: 3,
+        ":hover": {
+          boxShadow: 7,
+        },
+      }}
+      variant="outlined"
+    >
       <Stack
         padding={2}
         direction="column"
@@ -29,7 +38,7 @@ function StockCard({
             {changeAmount}
           </Typography>
           <Typography variant="body2" color={changeAmountColor}>
-            ({changePercentage})
+            ({changePercentage.replace("-", "")})
           </Typography>
         </Stack>
       </Stack>
