@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/jyo-stocks/static/css/main.ebc7ddc8.css",
-    "main.js": "/jyo-stocks/static/js/main.6a780620.js",
+    "main.js": "/jyo-stocks/static/js/main.18665e49.js",
     "static/media/sad-img.jpg": "/jyo-stocks/static/media/sad-img.65b55c4146c71c107daa.jpg",
     "static/media/deafult-stock.png": "/jyo-stocks/static/media/deafult-stock.53d6823bdc9fb791d74f.png",
     "static/media/logo-no-background.png": "/jyo-stocks/static/media/logo-no-background.d912009287ed15a493bb.png",
     "index.html": "/jyo-stocks/index.html",
     "main.ebc7ddc8.css.map": "/jyo-stocks/static/css/main.ebc7ddc8.css.map",
-    "main.6a780620.js.map": "/jyo-stocks/static/js/main.6a780620.js.map"
+    "main.18665e49.js.map": "/jyo-stocks/static/js/main.18665e49.js.map"
   },
   "entrypoints": [
     "static/css/main.ebc7ddc8.css",
-    "static/js/main.6a780620.js"
+    "static/js/main.18665e49.js"
   ]
 }
