@@ -13,9 +13,9 @@ function StockCard({ ticker, price, changeAmount, changePercentage }) {
         width: "180px",
         height: "120px",
         textDecoration: "none",
-        boxShadow: 3,
+        borderRadius: 4,
         ":hover": {
-          boxShadow: 7,
+          boxShadow: 3,
         },
       }}
       variant="outlined"

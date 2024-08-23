@@ -1,10 +1,10 @@
-import { Link } from "@mui/material";
+import { Button } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 export default function HyperLink(props) {
   return (
-    <Link component={RouterLink} {...props}>
+    <Button style={{ textTransform: "none" }} component={RouterLink} {...props}>
       {props.children}
-    </Link>
+    </Button>
   );
 }

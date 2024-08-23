@@ -12,7 +12,7 @@ const Footer = () => {
       sx={{ background: "#e6e9ed" }}
     >
       <Typography variant="body2">
-        &copy; Copyright 2024 Jyo Street, All rights reserved
+        &copy; Copyright 2024 Jyo Stocks, All rights reserved
       </Typography>
     </Box>
   );

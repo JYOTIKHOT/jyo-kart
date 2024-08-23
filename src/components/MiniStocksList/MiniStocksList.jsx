@@ -19,8 +19,8 @@ export default function MiniStocksList({
       <Stack
         width="100%"
         direction={{ sm: "row" }}
-        justifyContent={{sm: "space-between"}}
-        alignItems={{sm: "center"}}
+        justifyContent={{ sm: "space-between" }}
+        alignItems={{ xs: "flex-start", sm: "center" }}
         flexWrap="wrap"
       >
         <Typography variant="h6" fontWeight={700}>

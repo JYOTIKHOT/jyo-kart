@@ -19,7 +19,7 @@ import { isEmpty } from "lodash";
 const TITLE_BY_TYPE = {
   topGainers: "Top Gainers",
   topLosers: "Top Losers",
-  topTraded: "Most Traded",
+  topTraded: "Trending",
 };
 
 export default function TopStocks() {

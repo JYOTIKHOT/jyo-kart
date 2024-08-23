@@ -5,6 +5,8 @@
 
 .page {
   min-height: calc(100vh - 128px);
+  width: 100%;
+  box-sizing: border-box;
   padding: 48px;
   background-color: #f1f3f7;
 }

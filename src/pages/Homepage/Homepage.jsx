@@ -21,7 +21,7 @@ const Homepage = () => {
       <Stack direction="column" spacing={4} width="100%" alignItems="center">
         <MostChangedStocks
           stockList={topTraded.slice(0, 5)}
-          title="Most Traded"
+          title="Trending"
           type={STOCK_TYPES.TOP_TRADED}
         />
         <MostChangedStocks
