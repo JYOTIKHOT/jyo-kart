@@ -24,6 +24,8 @@ function StockSearch() {
         setInputValue(newValue ? newValue.label : "");
         navigate(`/stocks/${newValue.value}`);
       }}
+      blurOnSelect
+      onFocus={() => setInputValue("")}
       inputValue={inputValue}
       onInputChange={(_, newInputValue) => {
         setInputValue(newInputValue);

@@ -6,17 +6,29 @@ import Typography from "@mui/material/Typography";
 import { Card, Stack } from "@mui/material";
 import Logo from "../../assets/logo-no-background.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { isAuthenticatedSelector, register } from "../../store/userReducer";
+import { useEffect } from "react";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(isAuthenticatedSelector);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    dispatch(
+      register({
+        username: data.get("username"),
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+    );
+    navigate("/");
   };
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
 
   return (
     <Box className="page">
@@ -30,19 +42,12 @@ export default function RegisterPage() {
           variant="outlined"
           sx={{ width: "400px", maxWidth: "90%", borderRadius: 3 }}
         >
-          <Stack
-            p={4}
-            pb={7}
-            pt={4}
-            spacing={3}
-            boxSizing="border-box"
-            alignItems="center"
-          >
+          <Stack p={3} spacing={3} boxSizing="border-box" alignItems="center">
             <img width="84px" src={Logo} alt="logo" />
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Stack
+            <Box
               component="form"
               onSubmit={handleSubmit}
               noValidate
@@ -65,9 +70,8 @@ export default function RegisterPage() {
                 required
                 fullWidth
                 id="username"
-                label="Email Address"
+                label="Username"
                 name="username"
-                autoFocus
               />
               <TextField
                 margin="normal"
@@ -88,10 +92,10 @@ export default function RegisterPage() {
               >
                 Sign Up
               </Button>
-              <Link onClick={() => navigate("/login")} variant="body2">
-                {"Already registered? Sign In"}
-              </Link>
-            </Stack>
+            </Box>
+            <Link onClick={() => navigate("/login")} variant="body2">
+              {"Already registered? Sign In"}
+            </Link>
           </Stack>
         </Card>
       </Stack>

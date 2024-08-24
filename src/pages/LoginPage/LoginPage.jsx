@@ -3,24 +3,29 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Card, Stack } from "@mui/material";
 import Logo from "../../assets/logo-no-background.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { isAuthenticatedSelector, login } from "../../store/userReducer";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(isAuthenticatedSelector);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    dispatch(
+      login({ username: data.get("username"), password: data.get("password") })
+    );
   };
-
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
   return (
     <Box className="page">
       <Stack
@@ -33,14 +38,7 @@ export default function LoginPage() {
           variant="outlined"
           sx={{ width: "400px", maxWidth: "90%", borderRadius: 3 }}
         >
-          <Stack
-            p={4}
-            pb={7}
-            pt={4}
-            spacing={3}
-            boxSizing="border-box"
-            alignItems="center"
-          >
+          <Stack p={3} spacing={3} boxSizing="border-box" alignItems="center">
             <img width="84px" src={Logo} alt="logo" />
             <Typography component="h1" variant="h5">
               Sign in
@@ -49,6 +47,7 @@ export default function LoginPage() {
               component="form"
               onSubmit={handleSubmit}
               noValidate
+              width={1}
               sx={{ mt: 1 }}
             >
               <TextField
@@ -56,10 +55,9 @@ export default function LoginPage() {
                 size="small"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="Username"
+                name="username"
                 autoFocus
               />
               <TextField
@@ -85,23 +83,10 @@ export default function LoginPage() {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link
-                    onClick={() => navigate("/register")}
-                    href="#"
-                    variant="body2"
-                  >
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
+            <Link onClick={() => navigate("/register")} variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
           </Stack>
         </Card>
       </Stack>
