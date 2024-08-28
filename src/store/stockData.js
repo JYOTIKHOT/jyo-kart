@@ -3,28 +3,20 @@ import axios from "axios";
 
 const baseURL = process.env.REACT_APP_FIN_API_BASE_URL || "";
 
-export const fetchStockQuote = createAsyncThunk(
-  "stockData/fetchQuote",
+export const fetchStockData = createAsyncThunk(
+  "stockData/fetchStockData",
   async (symbol) => {
     try {
-      const url = new URL(`${baseURL}/quote`);
-      url.searchParams.append("symbol", symbol);
-      const response = await axios.get(url.toString());
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-
-export const fetchCompanyProfile = createAsyncThunk(
-  "stockData/fetchCompanyProfile",
-  async (symbol) => {
-    try {
-      const url = new URL(`${baseURL}/stock/profile2`);
-      url.searchParams.append("symbol", symbol);
-      const response = await axios.get(url.toString());
-      return response.data;
+      console.log("action called");
+      const quoteUrl = new URL(`${baseURL}/quote`);
+      quoteUrl.searchParams.append("symbol", symbol);
+      const profileUrl = new URL(`${baseURL}/stock/profile2`);
+      profileUrl.searchParams.append("symbol", symbol);
+      const responses = await Promise.all(
+        [quoteUrl, profileUrl].map((url) => axios.get(url.toString()))
+      );
+      console.log("responses", responses);
+      return responses;
     } catch (error) {
       return error.message;
     }
@@ -54,26 +46,35 @@ export const fetchHistoricalData = createAsyncThunk(
 const stockDataSlice = createSlice({
   name: "stockData",
   initialState: {
-    quoteData: {},
-    companyProfile: {},
-    historicalData: {},
+    data: {
+      quoteData: {},
+      companyProfile: {},
+      historicalData: {},
+    },
+    status: "idle",
+    error: null,
   },
   reducers: {
     clearStockData(state) {
-      state.quoteData = {};
-      state.companyProfile = {};
+      state.data.quoteData = {};
+      state.data.companyProfile = {};
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchStockQuote.fulfilled, (state, action) => {
-        state.quoteData = action.payload;
+      .addCase(fetchStockData.pending, (state) => {
+        state.error = null;
+        state.status = "loading";
       })
-      .addCase(fetchCompanyProfile.fulfilled, (state, action) => {
-        state.companyProfile = action.payload;
+      .addCase(fetchStockData.fulfilled, (state, { payload }) => {
+        const [quoteData, companyProfile] = payload;
+        state.data.quoteData = quoteData.data;
+        state.data.companyProfile = companyProfile.data;
+        state.status = "fulfilled";
       })
-      .addCase(fetchHistoricalData.fulfilled, (state, action) => {
-        state.historicalData = action.payload;
+      .addCase(fetchStockData.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.status = "error";
       });
   },
 });
@@ -82,8 +83,11 @@ const stockDataSlice = createSlice({
 export const { clearStockData } = stockDataSlice.actions;
 
 // Selectors
-export const getQuoteData = (state) => state.stockData.quoteData;
-export const getCompanyProfile = (state) => state.stockData.companyProfile;
-export const getHistoricalData = (state) => state.stockData.historicalData;
+export const getQuoteData = (state) => state.stockData.data?.quoteData;
+export const getCompanyProfile = (state) =>
+  state.stockData.data?.companyProfile;
+export const getHistoricalData = (state) =>
+  state.stockData.data?.historicalData;
+export const getAsyncStatus = (state) => state.stockData.status;
 
 export default stockDataSlice.reducer;

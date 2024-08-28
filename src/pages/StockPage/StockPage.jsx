@@ -5,24 +5,25 @@ import { useParams } from "react-router-dom";
 
 import {
   clearStockData,
-  fetchCompanyProfile,
-  fetchStockQuote,
+  fetchStockData,
+  getAsyncStatus,
   getCompanyProfile,
   getQuoteData,
 } from "../../store/stockData";
 // import Chart from "../../components/Chart";
 import { StockDetails, StockPriceData } from "../../components/StockDataViews";
 import SadImage from "../../assets/sad-img.jpg";
+import Loader from "../../components/Loader";
 
 export default function StockPage() {
   const dispatch = useDispatch();
   const quoteData = useSelector(getQuoteData);
   const companyProfile = useSelector(getCompanyProfile);
+  const status = useSelector(getAsyncStatus);
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(fetchStockQuote(id));
-    dispatch(fetchCompanyProfile(id));
+    dispatch(fetchStockData(id));
     return () => {
       dispatch(clearStockData());
     };
@@ -30,6 +31,7 @@ export default function StockPage() {
 
   return (
     <Box className="page">
+      {status === "loading" && <Loader />}
       <Grid container spacing={2}>
         <Grid minHeight="100%" item xs={12} md={8}>
           <Card

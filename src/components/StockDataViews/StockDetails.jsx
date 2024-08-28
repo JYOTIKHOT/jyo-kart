@@ -26,7 +26,12 @@ function StockDetails({ companyProfile }) {
         boxSizing="border-box"
       >
         {Object.keys(detailsList).map((detailKey) => (
-          <Stack key={detailKey} direction="row" justifyContent="space-between">
+          <Stack
+            key={detailKey}
+            alignContent="space-between"
+            direction="row"
+            justifyContent="space-between"
+          >
             <Typography variant="body2">{detailsList[detailKey]}</Typography>
             <Typography variant="body2">
               {detailKey === "marketCapitalization"

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 
 const Footer = () => {
@@ -11,9 +11,11 @@ const Footer = () => {
       color="#0c0c29d6"
       sx={{ background: "#e6e9ed" }}
     >
-      <Typography variant="body2">
-        &copy; Copyright 2024 Jyo Stocks, All rights reserved
-      </Typography>
+      <Stack height={1} justifyContent="center" alignItems="center" width={1}>
+        <Typography variant="body2">
+          &copy; Copyright 2024 Jyo Stocks, All rights reserved
+        </Typography>
+      </Stack>
     </Box>
   );
 };

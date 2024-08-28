@@ -26,7 +26,6 @@ axios.interceptors.request.use(
     Promise.reject(error);
   }
 );
-
 const App = () => {
   return (
     <Routes>
