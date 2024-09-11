@@ -13,7 +13,6 @@ import {
 // import Chart from "../../components/Chart";
 import { StockDetails, StockPriceData } from "../../components/StockDataViews";
 import SadImage from "../../assets/sad-img.jpg";
-import Loader from "../../components/Loader";
 
 export default function StockPage() {
   const dispatch = useDispatch();
@@ -31,7 +30,6 @@ export default function StockPage() {
 
   return (
     <Box className="page">
-      {status === "loading" && <Loader />}
       <Grid container spacing={2}>
         <Grid minHeight="100%" item xs={12} md={8}>
           <Card
@@ -67,12 +65,16 @@ export default function StockPage() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={12}>
               <StockPriceData
+                loading={status === "loading"}
                 companyProfile={companyProfile}
                 quoteData={quoteData}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={12}>
-              <StockDetails companyProfile={companyProfile} />
+              <StockDetails
+                loading={status === "loading"}
+                companyProfile={companyProfile}
+              />
             </Grid>
           </Grid>
         </Grid>

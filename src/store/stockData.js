@@ -15,7 +15,6 @@ export const fetchStockData = createAsyncThunk(
       const responses = await Promise.all(
         [quoteUrl, profileUrl].map((url) => axios.get(url.toString()))
       );
-      console.log("responses", responses);
       return responses;
     } catch (error) {
       return error.message;

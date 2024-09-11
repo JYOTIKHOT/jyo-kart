@@ -15,7 +15,8 @@ export const useDebouncedStockSearch = (query, delay = 1000) => {
         .then((res) => res.data.result)
         .then((stocks) => {
           const filteredStocks = stocks.filter(
-            (stock) => stock.type === "Common Stock"
+            (stock) =>
+              stock.type === "Common Stock" && !stock.symbol?.includes(".")
           );
           setOptions(
             filteredStocks.map((stock) => ({
